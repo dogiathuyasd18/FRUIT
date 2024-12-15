@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Add to Cart | Grocery Mart</title>
+
+        <!-- Favicon -->
+        <link rel="apple-touch-icon" sizes="76x76" href="./assets/favicon/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon/favicon-16x16.png" />
+        <link rel="manifest" href="./assets/favicon/site.webmanifest" />
+        <meta name="msapplication-TileColor" content="#da532c" />
+        <meta name="theme-color" content="#ffffff" />
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="./assets/fonts/stylesheet.css" />
+
+        <!-- Styles -->
+        <link rel="stylesheet" href="./assets/css/main.css" />
+
+        <!-- Scripts -->
+        <script src="./assets/js/scripts.js"></script>
+    </head>
+    <body>
+        <!-- Header -->
+        <header id="header" class="header"></header>
+        <script>
+            load("#header", "./templates/header-logined.ejs");
+        </script>
+
+        <!-- MAIN -->
+        <main class="add-to-cart-page">
+            <div class="container">
+                <!-- Add to Cart Confirmation -->
+                <div class="add-to-cart-container">
+                    <div class="row">
+                        <div class="col-12">
+                            <h1 class="add-to-cart-title">Item Added to Cart</h1>
+                            <p class="add-to-cart-description">
+                                The item has been successfully added to your cart. What would you like to do next?
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="cart-info">
+                                <!-- Cart item -->
+                                <article class="cart-item">
+                                    <a href="./product-detail">
+                                        <img
+                                            src="./assets/img/product/item-1.png"
+                                            alt="Coffee Beans - Espresso Arabica and Robusta Beans"
+                                            class="cart-item__thumb"
+                                        />
+                                    </a>
+                                    <div class="cart-item__content">
+                                        <div class="cart-item__content-left">
+                                            <h3 class="cart-item__title">
+                                                <a href="./product-detail">
+                                                    Coffee Beans - Espresso Arabica and Robusta Beans
+                                                </a>
+                                            </h3>
+                                            <p class="cart-item__price-wrap">
+                                                $47.00 | <span class="cart-item__status">In Stock</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cart Action Buttons -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="cart-action-buttons">
+                            <a href="./cart" class="btn btn--primary btn--rounded">
+                                View Cart
+                            </a>
+                            <a href="./checkout" class="btn btn--primary btn--rounded">
+                                Proceed to Checkout
+                            </a>
+                            <a href="./" class="btn btn--outline btn--rounded">
+                                Continue Shopping
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer id="footer" class="footer"></footer>
+        <script>
+            load("#footer", "./templates/footer.ejs");
+        </script>
+    </body>
+</html>

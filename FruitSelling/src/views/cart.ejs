@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Cart | Grocery Mart</title>
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="76x76" href="./assets/favicon/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon/favicon-16x16.png" />
+    <link rel="manifest" href="./assets/favicon/site.webmanifest" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="./assets/fonts/stylesheet.css" />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="./assets/css/main.css" />
+
+    <!-- Scripts -->
+    <script src="./assets/js/scripts.js"></script>
+    <script src="./assets/js/addToCart.js"></script>
+    <script src="./nodejs/src/controllers/homeController.js"></script>
+
+</head>
+
+<body>
+    <!-- Header -->
+    <header id="header" class="header"></header>
+    <script>
+        load("#header", "./templates/header-logined.ejs");
+    </script>
+
+    <!-- MAIN -->
+    <main class="cart-page">
+        <div class="container">
+            <!-- Cart content -->
+            <div class="cart-container">
+                <form action="/checkout" id="checkout" method="post">
+                    <div class="row">
+                        <div class="col-12">
+                            <h1 class="cart-title">Your Shopping Cart</h1>
+                            <p class="cart-description">
+                                Review your cart items before proceeding to checkout.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Cart item 1 -->
+                    <article class="cart-item" data-price="5.99" data-item="item-1">
+                        <div class="cart-item__content" name="1">
+                            <div class="cart-item__content-left" name="item-1">
+                                <div><img src="./assets/img/product/item-1.png" alt="Fresh Organic Apples"
+                                        class="cart-item__thumb" /></div>
+                                <h3 class="cart-item__title">Fresh Organic Apples</h3>
+                                <p class="cart-item__price-wrap">
+                                    $5.99 | <span class="cart-item__status">In Stock</span>
+                                </p>
+                                <input type="hidden" name="cartItem" id="cartItems"
+                                    value='[{"name":"Apple","quantity":2,"price":5.99}]'>
+                            </div>
+
+                            <div class="cart-item__ctrl cart-item__ctrl--md-block">
+                                <!-- Quantity control -->
+                                <div class="cart-item__input">
+                                    <button class="cart-item__input-btn decrease" data-item="item-1">
+                                        <img class="icon" src="./assets/icons/minus.svg" alt="" />
+                                    </button>
+                                    <span class="quantity" id="quantity-item-1" name="quantity1">0</span>
+                                    <button class="cart-item__input-btn increase" data-item="item-1">
+                                        <img class="icon" src="./assets/icons/plus.svg" alt="" />
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="cart-item__content-right">
+                                <p class="cart-item__total-price" id="total-price-item-1">$5.99</p>
+                                <div class="cart-item__ctrl">
+                                    <!-- Remove button -->
+                                    <button class="cart-item__ctrl-btn remove-item" data-item="item-1">
+                                        <img src="./assets/icons/trash.svg" alt="Remove item" />
+                                        Remove
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Cart item 2: Bananas -->
+                    <article class="cart-item" data-price="3.99" data-item="item-2">
+                        <div class="cart-item__content" name="2">
+                            <div class="cart-item__content-left" name="item-2">
+                                <div><img src="./assets/img/product/item-2.png" alt="Fresh Bananas"
+                                        class="cart-item__thumb" /></div>
+                                <h3 class="cart-item__title">Fresh Bananas</h3>
+                                <p class="cart-item__price-wrap">
+                                    $3.99 | <span class="cart-item__status">In Stock</span>
+                                </p>
+                                <input type="hidden" name="cartItem" id="cartItems"
+                                    value='[{"name":"Bananas","quantity":2,"price":3.99}]'>
+                            </div>
+
+                            <div class="cart-item__ctrl cart-item__ctrl--md-block">
+                                <!-- Quantity control -->
+                                <div class="cart-item__input">
+                                    <button class="cart-item__input-btn decrease" data-item="item-2">
+                                        <img class="icon" src="./assets/icons/minus.svg" alt="" />
+                                    </button>
+                                    <span class="quantity" id="quantity-item-2" name="quantity2">0</span>
+                                    <button class="cart-item__input-btn increase" data-item="item-2">
+                                        <img class="icon" src="./assets/icons/plus.svg" alt="" />
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="cart-item__content-right">
+                                <p class="cart-item__total-price" id="total-price-item-2">$3.99</p>
+                                <div class="cart-item__ctrl">
+                                    <!-- Remove button -->
+                                    <button class="cart-item__ctrl-btn remove-item" data-item="item-2">
+                                        <img src="./assets/icons/trash.svg" alt="Remove item" />
+                                        Remove
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Cart item 3: Oranges -->
+                    <article class="cart-item" data-price="6.99" data-item="item-3">
+                        <div class="cart-item__content" name="3">
+                            <div class="cart-item__content-left" name="item-3">
+                                <div><img src="./assets/img/product/item-3.png" alt="Fresh Oranges"
+                                        class="cart-item__thumb" /></div>
+                                <h3 class="cart-item__title">Fresh Oranges</h3>
+                                <p class="cart-item__price-wrap">
+                                    $6.99 | <span class="cart-item__status">In Stock</span>
+                                </p>
+                                <input type="hidden" name="cartItem" id="cartItems"
+                                    value='[{"name":"Oranges","quantity":2,"price":6.99}]'>
+                            </div>
+
+                            <div class="cart-item__ctrl cart-item__ctrl--md-block">
+                                <!-- Quantity control -->
+                                <div class="cart-item__input">
+                                    <button class="cart-item__input-btn decrease" data-item="item-3">
+                                        <img class="icon" src="./assets/icons/minus.svg" alt="" />
+                                    </button>
+                                    <span class="quantity" id="quantity-item-3" name="quantity3">0</span>
+                                    <button class="cart-item__input-btn increase" data-item="item-3">
+                                        <img class="icon" src="./assets/icons/plus.svg" alt="" />
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="cart-item__content-right">
+                                <p class="cart-item__total-price" id="total-price-item-3">$6.99</p>
+                                <div class="cart-item__ctrl">
+                                    <!-- Remove button -->
+                                    <button class="cart-item__ctrl-btn remove-item" data-item="item-3">
+                                        <img src="./assets/icons/trash.svg" alt="Remove item" />
+                                        Remove
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Cart item 4: Dragon Fruit -->
+                    <article class="cart-item" data-price="9.99" data-item="item-4">
+                        <div class="cart-item__content" name="4">
+                            <div class="cart-item__content-left" name="item-4">
+                                <div><img src="./assets/img/product/item-4.png" alt="Fresh Dragon Fruit"
+                                        class="cart-item__thumb" /></div>
+                                <h3 class="cart-item__title">Fresh Dragon Fruit</h3>
+                                <p class="cart-item__price-wrap">
+                                    $9.99 | <span class="cart-item__status">In Stock</span>
+                                </p>
+                                <input type="hidden" name="cartItem" id="cartItems"
+                                    value='[{"name":"Dragon Fruit","quantity":2,"price":9.99}]'>
+                            </div>
+
+                            <div class="cart-item__ctrl cart-item__ctrl--md-block">
+                                <!-- Quantity control -->
+                                <div class="cart-item__input">
+                                    <button class="cart-item__input-btn decrease" data-item="item-4">
+                                        <img class="icon" src="./assets/icons/minus.svg" alt="" />
+                                    </button>
+                                    <span class="quantity" id="quantity-item-4" name="quantity4">0</span>
+                                    <button class="cart-item__input-btn increase" data-item="item-4">
+                                        <img class="icon" src="./assets/icons/plus.svg" alt="" />
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="cart-item__content-right">
+                                <p class="cart-item__total-price" id="total-price-item-4">$9.99</p>
+                                <div class="cart-item__ctrl">
+                                    <!-- Remove button -->
+                                    <button class="cart-item__ctrl-btn remove-item" data-item="item-4">
+                                        <img src="./assets/icons/trash.svg" alt="Remove item" />
+                                        Remove
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <!-- Cart item 5: Mangoes -->
+                    <article class="cart-item" data-price="12.50" data-item="item-5">
+                        <div class="cart-item__content" name="5">
+                            <div class="cart-item__content-left" name="item-5">
+                                <div><img src="./assets/img/product/item-5.png" alt="Fresh Mangoes"
+                                        class="cart-item__thumb" /></div>
+                                <h3 class="cart-item__title">Fresh Mangoes</h3>
+                                <p class="cart-item__price-wrap">
+                                    $12.50 | <span class="cart-item__status">In Stock</span>
+                                </p>
+                                <input type="hidden" name="cartItem" id="cartItems"
+                                    value='[{"name":"Mangoes","quantity":2,"price":12.50}]'>
+                            </div>
+
+                            <div class="cart-item__ctrl cart-item__ctrl--md-block">
+                                <!-- Quantity control -->
+                                <div class="cart-item__input">
+                                    <button class="cart-item__input-btn decrease" data-item="item-5">
+                                        <img class="icon" src="./assets/icons/minus.svg" alt="" />
+                                    </button>
+                                    <span class="quantity" id="quantity-item-5" name="quantity5">0</span>
+                                    <button class="cart-item__input-btn increase" data-item="item-5">
+                                        <img class="icon" src="./assets/icons/plus.svg" alt="" />
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="cart-item__content-right">
+                                <p class="cart-item__total-price" id="total-price-item-5">$12.50</p>
+                                <div class="cart-item__ctrl">
+                                    <!-- Remove button -->
+                                    <button class="cart-item__ctrl-btn remove-item" data-item="item-5">
+                                        <img src="./assets/icons/trash.svg" alt="Remove item" />
+                                        Remove
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Cart item 6: Watermelon -->
+                    <article class="cart-item" data-price="8.99" data-item="item-6">
+                        <div class="cart-item__content" name="6">
+                            <div class="cart-item__content-left" name="item-6">
+                                <div><img src="./assets/img/product/item-6.png" alt="Fresh Watermelon"
+                                        class="cart-item__thumb" /></div>
+                                <h3 class="cart-item__title">Fresh Watermelon</h3>
+                                <p class="cart-item__price-wrap">
+                                    $8.99 | <span class="cart-item__status">In Stock</span>
+                                </p>
+                                <input type="hidden" name="cartItem" id="cartItems"
+                                    value='[{"name":"Watermelon","quantity":2,"price":8.99}]'>
+                            </div>
+
+                            <div class="cart-item__ctrl cart-item__ctrl--md-block">
+                                <!-- Quantity control -->
+                                <div class="cart-item__input">
+                                    <button class="cart-item__input-btn decrease" data-item="item-6">
+                                        <img class="icon" src="./assets/icons/minus.svg" alt="" />
+                                    </button>
+                                    <span class="quantity" id="quantity-item-6" name="quantity6">0</span>
+                                    <button class="cart-item__input-btn increase" data-item="item-6">
+                                        <img class="icon" src="./assets/icons/plus.svg" alt="" />
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="cart-item__content-right">
+                                <p class="cart-item__total-price" id="total-price-item-6">$8.99</p>
+                                <div class="cart-item__ctrl">
+                                    <!-- Remove button -->
+                                    <button class="cart-item__ctrl-btn remove-item" data-item="item-6">
+                                        <img src="./assets/icons/trash.svg" alt="Remove item" />
+                                        Remove
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Cart item 7: Pineapple -->
+                    <article class="cart-item" data-price="7.99" data-item="item-7">
+                        <div class="cart-item__content" name="7">
+                            <div class="cart-item__content-left" name="item-7">
+                                <div><img src="./assets/img/product/item-7.png" alt="Fresh Pineapple"
+                                        class="cart-item__thumb" /></div>
+                                <h3 class="cart-item__title">Fresh Pineapple</h3>
+                                <p class="cart-item__price-wrap">
+                                    $7.99 | <span class="cart-item__status">In Stock</span>
+                                </p>
+                                <input type="hidden" name="cartItem" id="cartItems"
+                                    value='[{"name":"Pineapple","quantity":2,"price":7.99}]'>
+                            </div>
+
+                            <div class="cart-item__ctrl cart-item__ctrl--md-block">
+                                <!-- Quantity control -->
+                                <div class="cart-item__input">
+                                    <button class="cart-item__input-btn decrease" data-item="item-7">
+                                        <img class="icon" src="./assets/icons/minus.svg" alt="" />
+                                    </button>
+                                    <span class="quantity" id="quantity-item-7" name="quantity7">0</span>
+                                    <button class="cart-item__input-btn increase" data-item="item-7">
+                                        <img class="icon" src="./assets/icons/plus.svg" alt="" />
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="cart-item__content-right">
+                                <p class="cart-item__total-price" id="total-price-item-7">$7.99</p>
+                                <div class="cart-item__ctrl">
+                                    <!-- Remove button -->
+                                    <button class="cart-item__ctrl-btn remove-item" data-item="item-7">
+                                        <img src="./assets/icons/trash.svg" alt="Remove item" />
+                                        Remove
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Cart item 8: Grapes -->
+                    <article class="cart-item" data-price="4.99" data-item="item-8">
+                        <div class="cart-item__content" name="8">
+                            <div class="cart-item__content-left" name="item-8">
+                                <div><img src="./assets/img/product/item-8.png" alt="Fresh Grapes"
+                                        class="cart-item__thumb" /></div>
+                                <h3 class="cart-item__title">Fresh Grapes</h3>
+                                <p class="cart-item__price-wrap">
+                                    $4.99 | <span class="cart-item__status">In Stock</span>
+                                </p>
+                                <input type="hidden" name="cartItem" id="cartItems"
+                                    value='[{"name":"Grapes","quantity":2,"price":4.99}]'>
+                            </div>
+
+                            <div class="cart-item__ctrl cart-item__ctrl--md-block">
+                                <!-- Quantity control -->
+                                <div class="cart-item__input">
+                                    <button class="cart-item__input-btn decrease" data-item="item-8">
+                                        <img class="icon" src="./assets/icons/minus.svg" alt="" />
+                                    </button>
+                                    <span class="quantity" id="quantity-item-8" name="quantity8">0</span>
+                                    <button class="cart-item__input-btn increase" data-item="item-8">
+                                        <img class="icon" src="./assets/icons/plus.svg" alt="" />
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="cart-item__content-right">
+                                <p class="cart-item__total-price" id="total-price-item-8">$4.99</p>
+                                <div class="cart-item__ctrl">
+                                    <!-- Remove button -->
+                                    <button class="cart-item__ctrl-btn remove-item" data-item="item-8">
+                                        <img src="./assets/icons/trash.svg" alt="Remove item" />
+                                        Remove
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Cart item 9: Lemons -->
+                    <article class="cart-item" data-price="3.49" data-item="item-9">
+                        <div class="cart-item__content" name="9">
+                            <div class="cart-item__content-left" name="item-9">
+                                <div><img src="./assets/img/product/item-9.png" alt="Fresh Lemons"
+                                        class="cart-item__thumb" /></div>
+                                <h3 class="cart-item__title">Fresh Lemons</h3>
+                                <p class="cart-item__price-wrap">
+                                    $3.49 | <span class="cart-item__status">In Stock</span>
+                                </p>
+                                <input type="hidden" name="cartItem" id="cartItems"
+                                    value='[{"name":"Lemons","quantity":2,"price":3.49}]'>
+                            </div>
+
+                            <div class="cart-item__ctrl cart-item__ctrl--md-block">
+                                <!-- Quantity control -->
+                                <div class="cart-item__input">
+                                    <button class="cart-item__input-btn decrease" data-item="item-9">
+                                        <img class="icon" src="./assets/icons/minus.svg" alt="" />
+                                    </button>
+                                    <span class="quantity" id="quantity-item-9" name="quantity9">0</span>
+                                    <button class="cart-item__input-btn increase" data-item="item-9">
+                                        <img class="icon" src="./assets/icons/plus.svg" alt="" />
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="cart-item__content-right">
+                                <p class="cart-item__total-price" id="total-price-item-9">$3.49</p>
+                                <div class="cart-item__ctrl">
+                                    <!-- Remove button -->
+                                    <button class="cart-item__ctrl-btn remove-item" data-item="item-9">
+                                        <img src="./assets/icons/trash.svg" alt="Remove item" />
+                                        Remove
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Cart item 10: Kiwi -->
+                    <article class="cart-item" data-price="4.99" data-item="item-10">
+                        <div class="cart-item__content" name="10">
+                            <div class="cart-item__content-left" name="item-10">
+                                <div><img src="./assets/img/product/item-10.png" alt="Fresh Kiwi"
+                                        class="cart-item__thumb" /></div>
+                                <h3 class="cart-item__title">Fresh Kiwi</h3>
+                                <p class="cart-item__price-wrap">
+                                    $4.99 | <span class="cart-item__status">In Stock</span>
+                                </p>
+                                <input type="hidden" name="cartItem" id="cartItems"
+                                    value='[{"name":"Kiwi","quantity":2,"price":4.99}]'>
+                            </div>
+
+                            <div class="cart-item__ctrl cart-item__ctrl--md-block">
+                                <!-- Quantity control -->
+                                <div class="cart-item__input">
+                                    <button class="cart-item__input-btn decrease" data-item="item-10">
+                                        <img class="icon" src="./assets/icons/minus.svg" alt="" />
+                                    </button>
+                                    <span class="quantity" id="quantity-item-10" name="quantity10">0</span>
+                                    <button class="cart-item__input-btn increase" data-item="item-10">
+                                        <img class="icon" src="./assets/icons/plus.svg" alt="" />
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="cart-item__content-right">
+                                <p class="cart-item__total-price" id="total-price-item-10">$4.99</p>
+                                <div class="cart-item__ctrl">
+                                    <!-- Remove button -->
+                                    <button class="cart-item__ctrl-btn remove-item" data-item="item-10">
+                                        <img src="./assets/icons/trash.svg" alt="Remove item" />
+                                        Remove
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </form>
+
+            </div>
+        </div>
+
+        <!-- Cart summary -->
+        <div class="row">
+            <div class="col-12" name="total" value="999">
+                <div class="cart-summary">
+                    <div class="cart-summary__row">
+                        <span>Subtotal:</span>
+                        <span id="subtotal">$100.00</span>
+                        <input type="hidden" name="subtotal" value="10">
+                    </div>
+                    <div class="cart-summary__row">
+                        <span>Shipping:</span>
+                        <span>$10.00</span>
+                        <input type="hidden" name="shipping" value="10">
+                    </div>
+                    <div class="cart-summary__separate"></div>
+                    <div class="cart-summary__row cart-summary__row--bold">
+                        <span>Total:</span>
+                        <span id="total">$100.00</span>
+                        <input type="hidden" name="total" value="1000">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Proceed to Checkout Form -->
+        <form action="/checkout" method="post" id="checkoutForm">
+            <input type="submit" id="checkoutButton" value="Proceed to Checkout"
+                class="cart-info__next-btn btn btn--primary btn--rounded">
+        </form>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer id="footer" class="footer"></footer>
+    <script>
+        load("#footer", "./templates/footer.ejs");
+    </script>
+
+    <!-- Modal: confirm remove shopping cart item -->
+    <div id="delete-confirm" class="modal modal--small hide">
+        <div class="modal__content">
+            <p class="modal__text">Do you want to remove this item from your cart?</p>
+            <div class="modal__bottom">
+                <button class="btn btn--small btn--outline modal__btn js-toggle" toggle-target="#delete-confirm">
+                    Cancel
+                </button>
+                <button class="btn btn--small btn--danger btn--primary modal__btn btn--no-margin js-toggle"
+                    toggle-target="#delete-confirm">
+                    Remove
+                </button>
+            </div>
+        </div>
+        <div class="modal__overlay js-toggle" toggle-target="#delete-confirm"></div>
+    </div>
+</body>
+
+</html>

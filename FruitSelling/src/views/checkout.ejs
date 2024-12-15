@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout | Grocery Mart</title>
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="76x76" href="./assets/favicon/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon/favicon-16x16.png" />
+    <link rel="manifest" href="./assets/favicon/site.webmanifest" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="./assets/fonts/stylesheet.css" />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="./assets/css/main.css" />
+
+    <!-- Scripts -->
+    <script src="./assets/js/scripts.js"></script>
+</head>
+
+<body>
+    <!-- Header -->
+    <header id="header" class="header"></header>
+    <script>
+        load("#header", "./templates/header-logined.ejs");
+    </script>
+
+    <!-- MAIN -->
+    <main class="checkout-page">
+        <div class="container">
+            <!-- Search bar -->
+            <div class="checkout-container">
+                <div class="search-bar d-none d-md-flex">
+                    <input type="text" name="" id="" placeholder="Search for item" class="search-bar__input" />
+                    <button class="search-bar__submit">
+                        <img src="./assets/icons/search.svg" alt="" class="search-bar__icon icon" />
+                    </button>
+                </div>
+            </div>
+
+            <!-- Breadcrumbs -->
+            <div class="checkout-container">
+                <ul class="breadcrumbs checkout-page__breadcrumbs">
+                    <li>
+                        <a href="./index-logined.ejs" class="breadcrumbs__link">
+                            Home
+                            <img src="./assets/icons/arrow-right.svg" alt="" />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#!" class="breadcrumbs__link breadcrumbs__link--current">Checkout</a>
+                         <!-- <form action="checkout" method="post">
+                            <input type="submit" value="Checkout" class="breadcrumbs__link breadcrumbs__link--current">
+                         </form> -->
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Checkout content -->
+            <div class="checkout-container">
+                <div class="row gy-xl-3">
+                    <div class="col-8 col-xl-12">
+                        <div class="cart-info">
+                            <div class="cart-info__list">
+                                <!-- Cart item 1 -->
+                            </div>
+                            <div class="cart-info__bottom d-md-none">
+                                <div class="row">
+                                    <div class="col-8 col-xxl-7">
+                                        <form action="/cart" method="get">
+                                            <h1>Cart Items:</h1>
+                                            <div class="cart-info__continue">
+                                                <ul>
+                                                    <% cartItems.forEach(item => { %>
+                                                        <% if (item.quantity > 0) { %> 
+                                                            <li>
+                                                                <%= item.quantity %> x <%= item.title %> - $<%= item.price %> each
+                                                            </li>
+                                                        <% } %>
+                                                    <% }) %>
+                                                    
+                                                </ul>
+                                            </div>
+                                            <input type="submit" name="return" value="Continue Shopping"
+                                                class="cart-info__next-btn btn btn--primary btn--rounded">
+                                        </form>
+                                    </div>
+                                    <div class="col-4 col-xxl-5">
+                                        <div class="cart-info__row">
+                                            <span>Subtotal:</span>
+                                            <span>
+                                                <%=subtotal%>
+                                            </span>
+                                        </div>
+                                        <div class="cart-info__row">
+                                            <span>Shipping:</span>
+                                            <span>
+                                                10.00
+                                            </span>
+                                        </div>
+                                        <div class="cart-info__separate"></div>
+                                        <div class="cart-info__row cart-info__row--bold">
+                                            <span>Total:</span>
+                                            <span>
+                                                <%=total%>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4 col-xl-12">
+                        <form action="/shipping" method="post">
+                            <div class="cart-info">
+                                <div class="cart-info__row">
+                                    <span>Price <span class="cart-info__sub-label">(Total)</span></span>
+                                    <span>
+                                        <%= subtotal %>
+                                    </span>
+                                    <input type="hidden" name="subtotal" value="<%= subtotal %>">
+                                </div>
+                                <div class="cart-info__row">
+                                    <span>Shipping</span>
+                                    <span>10.00</span>
+                                    <input type="hidden" name="shipping" value="<%= shipping %>">
+                                </div>
+                                <div class="cart-info__separate"></div>
+                                <div class="cart-info__row">
+                                    <span>Estimated Total</span>
+                                    <span>
+                                        <%= total %>
+                                    </span>
+                                    <input type="hidden" name="total" value="<%= total %>">
+                                </div>
+                                <input type="submit" value="Continue to Checkout"
+                                    class="cart-info__next-btn btn btn--primary btn--rounded">
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer id="footer" class="footer"></footer>
+    <script>
+        load("#footer", "./templates/footer.ejs");
+    </script>
+
+    <!-- Modal: confirm remove shopping cart item -->
+    <div id="delete-confirm" class="modal modal--small hide">
+        <div class="modal__content">
+            <p class="modal__text">Do you want to remove this item from shopping cart?</p>
+            <div class="modal__bottom">
+                <button class="btn btn--small btn--outline modal__btn js-toggle" toggle-target="#delete-confirm">
+                    Cancel
+                </button>
+                <button class="btn btn--small btn--danger btn--primary modal__btn btn--no-margin js-toggle"
+                    toggle-target="#delete-confirm">
+                    Delete
+                </button>
+            </div>
+        </div>
+        <div class="modal__overlay js-toggle" toggle-target="#delete-confirm"></div>
+    </div>
+</body>
+
+</html>
